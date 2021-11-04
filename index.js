@@ -26,6 +26,10 @@ app.use(helmet());
 // The :status token will be color coded based on server response.
 app.use(morgan("dev"));
 
+app.get("/", (req, res) => {
+  console.log("It is working");
+});
+
 app.listen(PORT, () => {
   console.log(`express-postgresql-template listening on port ${PORT}...`);
 });
