@@ -26,8 +26,11 @@ app.use(helmet());
 // The :status token will be color coded based on server response.
 app.use(morgan("dev"));
 
+// sends a message to the default route when app is running
 app.get("/", (req, res) => {
-  console.log("It is working");
+  res.send(
+    "Express PostgreSQL Template server is running. Please refer to the README.md for reaching correct routes."
+  );
 });
 
 app.listen(PORT, () => {
