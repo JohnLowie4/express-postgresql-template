@@ -18,9 +18,8 @@ const users = (db) => {
   });
 
   // Get request to a specific user
-  route.get("/:id", (req, res) => {
-    const user_id = req.params.id;
-    console.log(req.params.id);
+  route.get("/:user_id", (req, res) => {
+    const user_id = req.params.user_id;
     db.query(
       `
         SELECT * FROM users WHERE id=$1;
