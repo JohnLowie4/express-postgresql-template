@@ -33,8 +33,10 @@ app.get("/", (req, res) => {
   );
 });
 
+// Import route handlers
 const users = require("./src/routes/users");
 
+// Mount middleware functions to specified path
 app.use("/api/users", users(db));
 
 app.listen(PORT, () => {

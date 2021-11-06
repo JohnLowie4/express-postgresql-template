@@ -2,6 +2,7 @@
 const route = require("express").Router();
 
 const users = (db) => {
+  // Get request to the users table
   route.get("/", (req, res) => {
     db.query(
       `
@@ -16,15 +17,17 @@ const users = (db) => {
       });
   });
 
+  // Get request to a specific user
   route.get("/:id", (req, res) => {
     const user_id = req.params.id;
+    console.log(req.params.id);
     db.query(
       `
-        SELECT * FROM users WHERE id = $1
+        SELECT * FROM users WHERE id=$1;
       `,
-      [user.id]
+      [user_id]
     )
-      .then((reponse) => {
+      .then((response) => {
         res.json(response.rows[0]);
       })
       .catch((error) => {
