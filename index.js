@@ -33,6 +33,10 @@ app.get("/", (req, res) => {
   );
 });
 
+const users = require("./src/routes/users");
+
+app.use("/api/users", users(db));
+
 app.listen(PORT, () => {
   console.log(`express-postgresql-template listening on port ${PORT}...`);
 });
