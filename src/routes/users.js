@@ -33,6 +33,13 @@ const users = (db) => {
         res.json(error.message);
       });
   });
+
+  // Post request to create new users
+  route.post("/create/:first_name/:last_name/:email", (req, res) => {
+    console.log(req);
+    console.log(res);
+  });
+
   return route;
 };
 
