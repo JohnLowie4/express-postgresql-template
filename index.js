@@ -36,10 +36,12 @@ app.get("/", (req, res) => {
 // Import route handlers
 const users = require("./src/routes/users");
 const user_phone_number = require("./src/routes/user_phone_number");
+const user_account = require("./src/routes/user_account");
 
 // Mount middleware functions to specified path
 app.use("/api/users", users(db));
 app.use("/api/user_phone_number", user_phone_number(db));
+app.use("/api/user_account", user_account(db));
 
 app.listen(PORT, () => {
   console.log(`express-postgresql-template listening on port ${PORT}...`);
