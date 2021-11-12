@@ -36,8 +36,8 @@ app.get("/", (req, res) => {
 });
 
 // Example of using a POST request
-router.get("/", (req, res) => {
-  res.sendfile("./views/index.html");
+app.get("/example", (req, res) => {
+  res.sendfile("./src/views/index.html");
 });
 
 // Import route handlers
