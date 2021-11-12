@@ -35,9 +35,9 @@ const users = (db) => {
   });
 
   // Post request to create new users
-  route.post("/create/:first_name/:last_name/:email", (req, res) => {
-    console.log(req);
-    console.log(res);
+  route.post("/create_user", (req, res) => {
+    console.log(req.body);
+    res.end("yes");
   });
 
   return route;

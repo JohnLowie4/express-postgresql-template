@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const router = express.Router();
 
 const app = express();
 
@@ -18,6 +19,7 @@ db.connect();
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 // helmet enhances your API's security
 app.use(helmet());
@@ -31,6 +33,11 @@ app.get("/", (req, res) => {
   res.send(
     "Express PostgreSQL Template server is running. Please refer to the README.md for reaching correct routes."
   );
+});
+
+// Example of using a POST request
+app.get("/example", (req, res) => {
+  res.sendfile("./src/views/index.html");
 });
 
 // Import route handlers
