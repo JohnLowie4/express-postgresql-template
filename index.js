@@ -37,7 +37,8 @@ app.get("/", (req, res) => {
 
 // Example of using a POST request
 app.get("/example", (req, res) => {
-  res.sendfile("./src/views/index.html");
+  // ---------------- START HERE AND LOOK AT THE SAFARI WEB PAGE: PATH
+  res.sendFile("index.html");
 });
 
 // Import route handlers

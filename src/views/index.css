@@ -1,0 +1,8 @@
+body {
+  background-color: red;
+}
+
+#users-table {
+  display: flex;
+  flex-direction: column;
+}
