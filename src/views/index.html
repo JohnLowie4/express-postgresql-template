@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Express PostgreSQL Template</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/index.css" type="text/css" />
+    <!-- <style>
+      @import url("/src/views/index.css");
+    </style> -->
   </head>
   <body>
     <h1>Express PostgreSQL Template</h1>
-    <input id="user" size="40" type="TEXT" />
-    <input id="password" size="40" type="password" />
-    <input id="submit" type="button" value="Submit" />
+    <form id="users-table">
+      <label for="fname">First Name</label>
+      <input id="fname" name="fname" size="40" type="text" />
+      <label for="lname">Last Name</label>
+      <input id="lname" name="lname" size="40" type="text" />
+      <lavel for="email">Email</lavel>
+      <input id="email" name="email" size="40" type="email" />
+      <input id="submit" type="button" value="Create User" />
+    </form>
   </body>
 </html>
