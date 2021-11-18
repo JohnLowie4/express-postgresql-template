@@ -7,7 +7,6 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const helmet = require("helmet");
 const morgan = require("morgan");
-const router = express.Router();
 
 const app = express();
 
@@ -33,12 +32,6 @@ app.get("/", (req, res) => {
   res.send(
     "Express PostgreSQL Template server is running. Please refer to the README.md for reaching correct routes."
   );
-});
-
-// Example of using a POST request
-app.get("/example", (req, res) => {
-  // ---------------- START HERE AND LOOK AT THE SAFARI WEB PAGE: PATH
-  res.sendFile("index.html");
 });
 
 // Import route handlers
