@@ -1,3 +1,5 @@
+const { response } = require("express");
+
 // Initialize a modular and mountable route handler
 const route = require("express").Router();
 
@@ -36,8 +38,20 @@ const users = (db) => {
 
   // Post request to create new users
   route.post("/create_user", (req, res) => {
-    console.log(req.body);
-    res.end("yes");
+    const data = [req.body.first_name, req.body.last_name, req.body.email];
+    db.query(
+      `
+        INSERT INTO users (first_name, last_name, email)
+          VALUES ($1, $2, $3) RETURNING *
+      `,
+      data
+    )
+      .then((response) => {
+        res.json(response.rows[0]);
+      })
+      .catch((error) => {
+        res.json(error.message);
+      });
   });
 
   return route;
