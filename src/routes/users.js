@@ -54,6 +54,51 @@ const users = (db) => {
       });
   });
 
+  // Put request to edit user
+  route.put("/edit_user", (req, res) => {
+    const data = [
+      req.body.id,
+      req.body.first_name,
+      req.body.last_name,
+      req.body.email,
+    ];
+
+    db.query(
+      `
+        UPDATE users
+        SET first_name = $2,
+          last_name = $3,
+          email = $4
+        WHERE id = $1
+        RETURNING *;
+      `,
+      data
+    )
+      .then((response) => {
+        res.json(response.rows);
+      })
+      .catch((error) => {
+        res.json(error.message);
+      });
+  });
+
+  // Delete user
+  route.delete("/delete/:user_id", (req, res) => {
+    const user_id = req.params.user_id;
+    db.query(
+      `
+        DELETE FROM users WHERE id=$1;
+      `,
+      [user_id]
+    )
+      .then((response) => {
+        console.log("User deleted");
+      })
+      .catch((error) => {
+        res.json(error.message);
+      });
+  });
+
   return route;
 };
 
