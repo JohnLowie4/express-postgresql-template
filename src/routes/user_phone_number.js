@@ -33,6 +33,55 @@ const user_phone_number = (db) => {
         res.json(error.message);
       });
   });
+
+  // Create new phone number for existing user
+  route.post("/create", (req, res) => {
+    const data = [
+      req.body.user_id,
+      req.body.phone_number,
+      req.body.number_type,
+    ];
+    db.query(
+      `
+        INSERT INTO user_phone_number (user_id, phone_number, number_type)
+          VALUES ($1, $2, $3) RETURNING *;
+      `,
+      data
+    )
+      .then((response) => {
+        res.json(response.rows);
+      })
+      .catch((error) => {
+        res.json(error.message);
+      });
+  });
+
+  // Edit existing phone number
+  route.put("/edit", (req, res) => {
+    const data = [
+      req.body.id,
+      req.body.user_id,
+      req.body.phone_number,
+      req.body.number_type,
+    ];
+    db.query(
+      `
+        UPDATE user_phone_number
+          SET phone_number = $3,
+            number_type = $4
+          WHERE id = $1 AND user_id = $2
+          RETURNING *;
+      `,
+      data
+    )
+      .then((response) => {
+        res.json(response.rows);
+      })
+      .catch((error) => {
+        res.json(error.message);
+      });
+  });
+
   return route;
 };
 

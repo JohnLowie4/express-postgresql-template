@@ -20,13 +20,13 @@ const users = (db) => {
   });
 
   // Get request to a specific user
-  route.get("/:user_id", (req, res) => {
-    const user_id = req.params.user_id;
+  route.get("/:id", (req, res) => {
+    const id = req.params.id;
     db.query(
       `
         SELECT * FROM users WHERE id=$1;
       `,
-      [user_id]
+      [id]
     )
       .then((response) => {
         res.json(response.rows[0]);
@@ -83,13 +83,13 @@ const users = (db) => {
   });
 
   // Delete user
-  route.delete("/delete/:user_id", (req, res) => {
-    const user_id = req.params.user_id;
+  route.delete("/delete/:id", (req, res) => {
+    const id = req.params.id;
     db.query(
       `
         DELETE FROM users WHERE id=$1;
       `,
-      [user_id]
+      [id]
     )
       .then((response) => {
         console.log("User deleted");
