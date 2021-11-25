@@ -33,6 +33,31 @@ const user_phone_number = (db) => {
         res.json(error.message);
       });
   });
+
+  // Create new phone number for existing user
+  route.post("/create", (req, res) => {
+    const data = [
+      req.body.user_id,
+      req.body.phone_number,
+      req.body.number_type,
+    ];
+    db.query(
+      `
+        INSERT INTO user_phone_number (user_id, phone_number, number_type)
+          VALUES ($1, $2, $3) RETURNING *;
+      `,
+      data
+    )
+      .then((response) => {
+        res.json(response.rows);
+      })
+      .catch((error) => {
+        res.json(error.message);
+      });
+  });
+
+  // Edit existing phone number
+
   return route;
 };
 
