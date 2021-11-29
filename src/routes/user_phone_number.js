@@ -82,6 +82,23 @@ const user_phone_number = (db) => {
       });
   });
 
+  // Deletes an existing phone number
+  // Make sure id and user_id are correct
+  route.delete("/delete/:id/:user_id", (req, res) => {
+    db.query(
+      `
+        DELETE FROM user_phone_number WHERE id=$1 AND user_id=$2
+      `,
+      [req.params.id, req.params.user_id]
+    )
+      .then((response) => {
+        res.json(response.rows[0]);
+      })
+      .catch((error) => {
+        res.json(error.message);
+      });
+  });
+
   return route;
 };
 
