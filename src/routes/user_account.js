@@ -33,6 +33,56 @@ const user_account = (db) => {
         res.json(error.message);
       });
   });
+
+  // Post request to create a new account
+  route.post("/create_account", (req, res) => {
+    const data = [
+      req.body.user_id,
+      req.body.account_type,
+      req.body.interest_rate,
+    ];
+    db.query(
+      `
+        INSERT INTO user_account (user_id, account_type, interest_rate)
+          VALUES ($1, $2, $3) RETURNING *;
+      `,
+      data
+    )
+      .then((response) => {
+        res.json(response.rows[0]);
+      })
+      .catch((error) => {
+        res.json(error.message);
+      });
+  });
+
+  // Put request to change account details
+  route.put("/edit_account", (req, res) => {
+    const data = [
+      req.body.id,
+      req.body.user_id,
+      req.body.account_type,
+      req.body.interest_rate,
+    ];
+    db.query(
+      `
+        UPDATE user_account
+        SET user_id = $2,
+          account_type = $3,
+          interest_rate = $4
+        WHERE ID = $1
+        RETURNING *;
+      `,
+      data
+    )
+      .then((response) => {
+        res.json(response.rows[0]);
+      })
+      .catch((error) => {
+        res.json(error.message);
+      });
+  });
+
   return route;
 };
 
