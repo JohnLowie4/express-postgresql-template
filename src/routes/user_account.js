@@ -83,6 +83,23 @@ const user_account = (db) => {
       });
   });
 
+  // Delete account
+  route.delete("/delete/:id/:user_id", (req, res) => {
+    const data = [req.params.id, req.params.user_id];
+    db.query(
+      `
+        DELETE FROM user_account WHERE id = $1 AND user_id = $2;
+      `,
+      data
+    )
+      .then((response) => {
+        res.json(response.rows);
+      })
+      .catch((error) => {
+        res.json(error.message);
+      });
+  });
+
   return route;
 };
 
