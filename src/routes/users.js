@@ -92,7 +92,7 @@ const users = (db) => {
       [id]
     )
       .then((response) => {
-        console.log("User deleted");
+        res.json(response.rows);
       })
       .catch((error) => {
         res.json(error.message);
