@@ -33,3 +33,16 @@ This project requires you to have some knowledge of JavaScript and PostgreSQL.
 7. You can now go to `http://localhost:8080` to see the server running.
 
 ## File Structure and Navigation
+
+Majority of the files that you will be interacting will be in the `src` folder.
+
+- The `index.js` file in the root folder is where all the interactions between the `.env` file and all the files in the `src` folder.
+- The `src/lib/db.js` file is the interaction between your database, and `.env` file. It sets up the environment that connects your JavaScript code to your PostgreSQL code.
+- The `src/routes/` folder is where all the RESTful API requests interactions happens. GET, POST, PUT, and DELETE requests for each table happens here.
+- The `src/db/` folder is where your PostgreSQL files are stored.
+- The `src/db/create_tables.sql` file is where all the tables of your database are dropped, and then created, and seeded with data.
+- The `src/db/seeds/` folder consists of all the initial seeding of data.
+
+## ERD of This Template
+
+![Template ERD](./public/template%20erd.drawio.png)
