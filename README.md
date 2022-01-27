@@ -46,3 +46,19 @@ Majority of the files that you will be interacting will be in the `src` folder.
 ## ERD of This Template
 
 ![Template ERD](./public/template%20erd.drawio.png)
+
+Now you can connect this template to your front end with [axios](https://github.com/axios/axios) or just plain old JavaScript [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
+
+If using `axios`, you can connect to this template with:
+
+```
+axios.get("localhost:8080")
+   .then((response) => {
+      console.log(response);
+   })
+   .catch((error) => {
+      console.log(error.message);
+   });
+```
+
+Happy coding🥳
